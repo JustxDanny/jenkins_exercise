@@ -13,7 +13,9 @@ pipeline {
         }
         stage('Generate Environment Graph') {
             steps {
-                sh 'terraform graph | dot -Tpng > graph.png'
+                sh "terraform graph > ${params.graph_file}"
+                sh "dot- Tpng ${params.graph_file} -o ${params.graph_img}"
+                sh "aws s3 cp ./${params.graph_img} s3://terraform-bucket-daniel/"
             }
         }
         stage('Upload to S3') {

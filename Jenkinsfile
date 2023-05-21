@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Upload to S3') {
             steps {
-                withAWS(credentials: 'aws-credentials') {
+                withAWS(credentials: 'AWScred', region: 'eu-central-1') {
                     sh 'aws s3 cp environment_graph.png s3://terraform-bucket-daniel/'
                 }
             }

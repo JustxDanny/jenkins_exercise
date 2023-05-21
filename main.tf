@@ -10,7 +10,7 @@ resource "aws_instance" "jenkins_example" {
 }
 resource "aws_s3_bucket" "mys3"{
     bucket = "terraform-bucket-daniel"
-    
+}
 resource "aws_s3_bucket_public_access_block" "bucket_public_access_block_example" {
   bucket = "terraform-bucket-daniel"
 

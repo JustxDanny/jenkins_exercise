@@ -16,7 +16,7 @@ pipeline{
             steps{
                 sh 'terraform graph > graph.dot'
                 sh 'dot -Tpng graph.dot -o graph.png'
-                sh 'aws s3 cp ./graph.png terraform-bucket-daniel-public'
+                sh 'aws s3 cp ./graph.png s3://terraform-bucket-daniel-public'
             }
         }
     }

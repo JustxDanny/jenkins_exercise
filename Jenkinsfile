@@ -12,5 +12,12 @@ pipeline{
                 sh 'terraform apply --auto-approve'
             }
         }
+        stage('graph creation'){
+            steps{
+                sh 'terraform graph > graph.dot'
+                sh 'dot -Tpng graph.dot -o graph.png'
+                sh 'aws s3 cp ./graph.png terraform-bucket-daniel-public'
+            }
+        }
     }
 }

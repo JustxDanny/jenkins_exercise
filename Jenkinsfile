@@ -14,9 +14,9 @@ pipeline{
         }
         stage('graph creation'){
             steps{
-                sh 'terraform graph > graph.dot'
-                sh 'dot -Tpng graph.dot -o graph.png'
-                sh 'aws s3 cp ./graph.png s3://terraform-bucket-daniel-public'
+                sh "terraform graph > ${params.graph_file}"
+                sh "dot -Tpng ${params.graph_file} -o ${params.graph_img}"
+                sh "aws s3 cp ./${params.graph_img} s3://terraform-bucket-daniel-public"
             }
         }
     }

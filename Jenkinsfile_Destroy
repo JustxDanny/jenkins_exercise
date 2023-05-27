@@ -1,0 +1,15 @@
+pipeline{
+    agent any
+
+    stages{
+        stage('Terraform destroy'){
+            steps{
+                dir('/var/jenkins_home/workspace/terraform(18.05)'){
+                    sh 'terraform init'
+                    sh 'aws s3 rm s3://terraform-bucket-daniel-public/graph.png'
+                    sh 'terraform destroy --auto-approve'
+                }
+            }
+        }
+    }
+}

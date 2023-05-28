@@ -1,6 +1,6 @@
 pipeline{
     agent any
-    params {
+        parameters {
         string(name: 'bucket_url', defaultValue: "s3://terraform-bucket-daniel-public")
     }
     stages {
